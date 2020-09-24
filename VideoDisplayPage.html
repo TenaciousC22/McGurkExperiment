@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html lang='en'>
+<head>
+	<meta charset="utf-8">
+
+	<title>Video Page</title>
+	<meta name="Description" content="A video display page">
+	<meta name="Author" content="Chris Perlette">
+
+	<link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body style="background: black">
+	<div align="center">
+		<button onclick="loadMovie()" type="button" id="Movie">Audio Behind Video</button>
+		<button onclick="loadMovie1()" type="button" id="Movie1">Synced</button>
+		<button onclick="loadMovie2()" type="button" id="Movie2">Audio Infront of Video WAAAAAAAAH</button>
+	</div>
+	<div align="center">
+		<button onclick="play()" type="button" id="playButton">Play Video</button>
+		<!--<button onclick="location.href='redirect.html'" type="button" id="continuebutton" disabled="true">Continue</button>-->
+		<button onclick="pause()" type="button" id="pauseButton">Pause Video</button>
+	</div>
+	<div align="center">
+		<video width="1120" height="630" id="video">
+			<!--<source src="../bin/movie.mp4" type="video/mp4">
+			<source src="movie.oog" type="video/oog">
+			Your browser does not support HTML5 video-->
+		</video>
+		<script>
+			var video=document.getElementById("video");
+			var source=document.createElement("source");
+			source.setAttribute("src","../bin/base.mp4");
+			video.appendChild(source);
+			video.load();
+			function play() {
+				video.play();
+				//document.getElementById("playButton").disabled=true;
+				//document.getElementById("continuebutton").disabled=false;
+			}
+			function pause() {
+				video.pause();
+			}
+			function loadMovie(){
+				video.pause();
+				source.setAttribute('src',"../bin/B360.mp4");
+				video.load();
+			}
+			function loadMovie1(){
+				video.pause();
+				source.setAttribute('src',"../bin/base.mp4");
+				video.load();
+			}
+			function loadMovie2(){
+				video.pause();
+				source.setAttribute('src',"../bin/I360.mp4");
+				video.load();
+			}
+		</script>
+	</div>
+
+</body>
+</html>

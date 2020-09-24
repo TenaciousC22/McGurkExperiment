@@ -106,15 +106,16 @@ mysqli_close($link);
 //Generate the list of videos to present to the participant
 //**************************************************************
 
-$typeMap=array();
-$typeMap[0]="base";
-$typeMap[1]="B060";
-$typeMap[2]="B240";
-$typeMap[3]="B360";
-$typeMap[4]="I060";
-$typeMap[5]="I240";
-$typeMap[6]="I360";
-$typeMap[7]="jumble";
+$typeMap=array(
+	0=>"base",
+	1=>"B060",
+	2=>"B240",
+	3=>"B360",
+	4=>"I060",
+	5=>"I240",
+	6=>"I360",
+	7=>"jumble"
+);
 
 $counter=0;
 $speakers=array();
@@ -127,9 +128,10 @@ for($x=1;$x<=6;$x++){
 	shuffle($numbers);
 	//echo gettype($numbers[4]) . "<br>";
 	for($y=0;$y<=7;$y++){
+		//echo $typeMap[$y] . "<br>";
 		$speakers[$counter]=$x;
 		$phrases[$counter]=$numbers[$y];
-		$types[$counter]=$y;
+		$types[$counter]=$typeMap[$y];
 		$counter++;
 	}
 }
@@ -158,6 +160,17 @@ for($x=0;$x<48;$x++){
 	}
 }
 
-mysqli_close($link);
+#mysqli_close($link);
 
+$sql="SELECT * FROM $pid WHERE id=1";
+
+if($result=mysqli_query($link,$sql)){
+	$row=mysqli_fetch_array($result);
+	$speaker=$row["speaker"];
+	$phrase=$row["phrase"];
+	$type=$row["type"];
+	echo "Speaker: " . $speaker . "<br>Phrase: " . $phrase . "<br>Type: " . $type . "<br>";
+}
+header("Location: https://localhost/McGurkExperiment/VideoDisplayPage.html?" . $pid . "|1|subclips/speaker" . $speaker . "/clip" . $phrase . "/" . $type . ".mp4");
+exit();
 ?>
