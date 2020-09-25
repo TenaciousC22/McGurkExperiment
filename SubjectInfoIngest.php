@@ -171,6 +171,9 @@ if($result=mysqli_query($link,$sql)){
 	$type=$row["type"];
 	echo "Speaker: " . $speaker . "<br>Phrase: " . $phrase . "<br>Type: " . $type . "<br>";
 }
+
+mysqli_close($link);
+
 header("Location: https://localhost/McGurkExperiment/VideoDisplayPage.html?" . $pid . "|1|subclips/speaker" . $speaker . "/clip" . $phrase . "/" . $type . ".mp4");
 exit();
 ?>

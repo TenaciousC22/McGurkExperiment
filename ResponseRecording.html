@@ -1,0 +1,63 @@
+<!doctype html>
+
+<html lang='en'>
+<head>
+	<meta charset="utf-8">
+
+	<title>Video Page</title>
+	<meta name="Description" content="A video display page">
+	<meta name="Author" content="Chris Perlette">
+
+	<link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body style="background: black">
+	<div align="center" style="color: white">
+		<form action="http://localhost/McGurkExperiment/ResponseIngest.php" method="post">
+			<p>
+				Please enter what the speaker said below:
+			</p>
+        	<p>
+	            <label for="response"></label>
+	            <input type="text" name="response" id="response">
+	        </p>
+	        <input type="submit" value="Submit">
+	    </form>
+	</div>
+<!--
+	<div align="center">
+		<button onclick="loadMovie()" type="button" id="Movie">Audio Behind Video</button>
+		<button onclick="loadMovie1()" type="button" id="Movie1">Synced</button>
+		<button onclick="loadMovie2()" type="button" id="Movie2">Audio Infront of Video</button>
+	</div>
+-->
+<!--
+	<div align="center">
+		<button onclick="play()" type="button" id="playButton">Play Video</button>
+		<button onclick="redirect()" type="button" id="continuebutton" disabled="true">Continue</button>
+		<button onclick="pause()" type="button" id="pauseButton">Pause Video</button>
+	</div>
+-->
+	<script>
+		var QS=location.search.substring(1);
+		var inputs=QS.split("|");
+		var pid=inputs[0];
+		var vid=inputs[1];
+		function createCookie(name, value, minutes){
+			var expires;
+			if(minutes){
+				var date=new Date();
+				date.setTime(date.getTime()+(minutes*60*1000));
+				expires="; expires="+date.toGMTString();
+			}
+			else{
+				expires="";
+			}
+			document.cookie=escape(name)+"="+escape(value)+expires+"; path=/";
+		}
+		createCookie("pid",pid,20);
+		createCookie("vid",vid,20);
+	</script>
+</body>
+</html>

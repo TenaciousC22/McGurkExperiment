@@ -14,32 +14,31 @@
 
 <body style="background: black">
 	<div align="center">
-		<button onclick="loadMovie()" type="button" id="Movie">Audio Behind Video</button>
-		<button onclick="loadMovie1()" type="button" id="Movie1">Synced</button>
-		<button onclick="loadMovie2()" type="button" id="Movie2">Audio Infront of Video WAAAAAAAAH</button>
-	</div>
-	<div align="center">
 		<button onclick="play()" type="button" id="playButton">Play Video</button>
-		<!--<button onclick="location.href='redirect.html'" type="button" id="continuebutton" disabled="true">Continue</button>-->
-		<button onclick="pause()" type="button" id="pauseButton">Pause Video</button>
+		<button onclick="redirect()" type="button" id="continuebutton" disabled="true">Continue</button>
 	</div>
 	<div align="center">
 		<video width="1120" height="630" id="video">
-			<!--<source src="../bin/movie.mp4" type="video/mp4">
-			<source src="movie.oog" type="video/oog">
-			Your browser does not support HTML5 video-->
 		</video>
 		<script>
+			var QS=location.search.substring(1);
+			var inputs=QS.split("|");
+			var pid=inputs[0];
+			var vid=inputs[1];
+			var link="ResponseRecording.html";
 			var video=document.getElementById("video");
 			var source=document.createElement("source");
-			source.setAttribute("src","../bin/base.mp4");
+			source.setAttribute("src",inputs[2]);
 			video.appendChild(source);
 			video.load();
-			function play() {
+			function play(){
 				video.play();
-				//document.getElementById("playButton").disabled=true;
-				//document.getElementById("continuebutton").disabled=false;
+				document.getElementById("playButton").disabled=true;
+				document.getElementById("continuebutton").disabled=false;
 			}
+			function redirect(){
+				window.location.replace(link.concat("?",pid,"|",vid));
+			};
 			function pause() {
 				video.pause();
 			}
