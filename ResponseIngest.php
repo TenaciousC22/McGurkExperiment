@@ -18,7 +18,7 @@ if(mysqli_query($link,$sql)){
 
 $vid=$vid+1;
 
-if($vid>5){
+if($vid>48){
 	header("Location: FinalPage.html");
 	exit();
 }

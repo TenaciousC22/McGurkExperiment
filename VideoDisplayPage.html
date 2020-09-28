@@ -20,25 +20,34 @@
 	<div align="center">
 		<video width="1120" height="630" id="video">
 		</video>
+		<audio id="audio">
+			<source src="bin/babble.mp3" type="audio/mpeg">
+		</audio>
 		<script>
 			var QS=location.search.substring(1);
 			var inputs=QS.split("|");
 			var pid=inputs[0];
 			var vid=inputs[1];
 			var link="ResponseRecording.html";
-			var video=document.getElementById("video");
+			var video=document.getElementById("video")
+			document.getElementById("video").addEventListener('ended',videoEnd,false);
 			var source=document.createElement("source");
+			var audio=document.getElementById("audio");
 			source.setAttribute("src",inputs[2]);
 			video.appendChild(source);
 			video.load();
 			function play(){
+				audio.play();
 				video.play();
 				document.getElementById("playButton").disabled=true;
 				document.getElementById("continuebutton").disabled=false;
 			}
 			function redirect(){
 				window.location.replace(link.concat("?",pid,"|",vid));
-			};
+			}
+			function videoEnd(){
+				audio.pause();
+			}
 			function pause() {
 				video.pause();
 			}
