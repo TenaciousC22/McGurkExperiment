@@ -2,24 +2,34 @@
 
 <html lang='en'>
 <head>
-	<meta charset="utf-8">
-
-	<title>Video Page</title>
-	<meta name="Description" content="A video display page">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	<title>Instructions</title>
+	<meta name="Description" content="Instruction display page">
 	<meta name="Author" content="Chris Perlette">
 
 	<link rel="stylesheet" href="css/styles.css?v=1.0">
 
 </head>
 
-<body style="background: black">
-	<div align="center" style="color: white; padding-top: 70px">
+<body style="background: black; color: white">
+	<div align="center" style="padding-top: 70px">
 		<p>Instructions<br></p>
-		<p>1. You will be presented with a video. Click "Play" when you are  ready to begin playback</p>
-		<p>2. Watch and listen to the video</p>
-		<p>3. Click "Continue" when the video has concluded</p>
-		<p>4. Enter what you heard into the box and click "Submit"</p>
-		<p>This process will repeat approximately 50 times.<br>If you ever feel uncomfortable with the process or do not wish to continue for any reason, close your current tab/window and your results will not be included in the final study</p>
+		<p>1. The next page will ask you for your information. Please fill out all relevant fields</p>
+		<p>2. You will be presented with a video. Click "Play" when you are  ready to begin playback</p>
+		<p>3. Watch and listen to the video</p>
+		<p>4. Click "Continue" when the video has concluded</p>
+		<p>5. Enter what you heard into the box and click "Submit"</p>
+		<p>This process will repeat approximately 50 times. The first video you see is a training video to help you learn the process. The results from this first video will not be recorded</p>
+		<p>If you ever feel uncomfortable with the process or do not wish to continue for any reason, close your current tab/window and your results will not be included in the final study</p>
+	</div>
+	<div align="center">
+		<button id="Continue">Continue</button>
 	</div>
 </body>
+<script>
+	document.getElementById("Continue").addEventListener("click", function(){
+	location.href="SubjectInfoForm.html";
+	});
+</script>
 </html>

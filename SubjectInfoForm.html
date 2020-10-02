@@ -1,34 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Subject Info Form</title>
 </head>
 
-<body>
-    <div>
+<body style="background: black; color: white">
+    <div style="padding-top: 70px" align="center">
         <form action="http://localhost/McGurkExperiment/SubjectInfoIngest.php" method="post">
+            <p style="font-size: 25px"><b><u>
+                Please fill out this form and click submit
+            </u></b></p>
+            <p>
+                <label>Is english your first language?&nbsp;&nbsp;<br></label>
+                <input type="radio" name="first_language" id="english" value="1" checked>
+                <label for="english">Yes<br></label>
+                <input type="radio" name="first_language" id="notEnglish" value="2">
+                <label for="notEnglish">No</label>
+            </p>
             <p>
                 <label for="age">Age:</label>
-                <input type="text" name="age" id="age">
+                <input type="number" name="age" id="age" value="18" autofocus>
             </p>
             <p>
                 <label for="gender">Gender:</label>
                 <input type="text" name="gender" id="gender">
             </p>
+            <p style="font-size: 20px"><b><u>
+                If you are completing this for course credit please fill out the following fields.<br>Otherwise click "Submit"
+            </u></b></p>
             <p>
-                <label for="firstlanguage">First Language:</label>
-                <input type="text" name="first_language" id="firstlanguage">
+                <label for="full_name">Full Name:</label>
+                <input type="text" name="full_name" id="full_name">
+            </p>
+            <p>
+                <label for="CID">Course ID:</label>
+                <input type="text" name="CourseID" id="CID">
             </p>
             <p>
                 <label for="SID">Student ID:</label>
                 <input type="text" name="StudentID" id="SID">
             </p>
-            <p>
-                *If you are not completing this for course credit, the Student ID field is not required
-            </p>
-            <input type="submit" value="Submit">
+            <input type="submit" id="submit" value="Submit">
         </form>
     </div>
+    <script>
+        function createCookie(name, value, minutes){
+            var expires;
+            if(minutes){
+                var date=new Date();
+                date.setTime(date.getTime()+(minutes*60*1000));
+                expires="; expires="+date.toGMTString();
+            }
+            else{
+                expires="";
+            }
+            document.cookie=escape(name)+"="+escape(value)+expires+"; path=/";
+        }
+        document.getElementById("submit").addEventListener("click",buildCookies);
+
+    </script>
 </body>
 </html>

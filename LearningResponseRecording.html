@@ -14,7 +14,8 @@
 
 <body style="background: black; color: white">
 	<div align="center" style="padding-top: 70px">
-		<form action="http://localhost/McGurkExperiment/ResponseIngest.php" method="post">
+		<form action="http://localhost/McGurkExperiment/TrialPrep.php" method="post">
+			<p>TRAINING</p>
 			<p>
 				Please enter what the speaker said below:
 			</p>
@@ -25,25 +26,5 @@
 	        <input type="submit" value="Submit">
 	    </form>
 	</div>
-	<script>
-		var QS=location.search.substring(1);
-		var inputs=QS.split("|");
-		var pid=inputs[0];
-		var vid=inputs[1];
-		function createCookie(name, value, minutes){
-			var expires;
-			if(minutes){
-				var date=new Date();
-				date.setTime(date.getTime()+(minutes*60*1000));
-				expires="; expires="+date.toGMTString();
-			}
-			else{
-				expires="";
-			}
-			document.cookie=escape(name)+"="+escape(value)+expires+"; path=/";
-		}
-		createCookie("pid",pid,20);
-		createCookie("vid",vid,20);
-	</script>
 </body>
 </html>

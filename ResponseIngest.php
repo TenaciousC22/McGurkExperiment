@@ -5,6 +5,7 @@ $link=mysqli_connect("localhost","root","","ChrisMcGurkExperiment");
 $response = mysqli_real_escape_string($link, $_REQUEST['response']);
 $pid=$_COOKIE["pid"];
 $vid=$_COOKIE["vid"];
+$sid=$_COOKIE["sid"];
 
 echo "PID: " . $pid . "<br>VID: " . $vid . "<br>Response: " . $response . "<br>";
 
@@ -18,9 +19,21 @@ if(mysqli_query($link,$sql)){
 
 $vid=$vid+1;
 
-if($vid>48){
+if($vid>1){
+	echo $sid."<br>";
+	if($sid!="NaN"){
+		$cid=$_COOKIE["cid"];
+		$name=$_COOKIE["name"];
+		$sql = "INSERT INTO students (sid, cid, name) VALUES ('$sid', '$cid', '$name')";
+		if(mysqli_query($link, $sql)){
+	    	echo "Records added successfully. <br>";
+		} else{
+	   		echo "ERROR: Could not execute $sql. " . mysqli_error($link);
+		}
+	}
+	/*
 	header("Location: FinalPage.html");
-	exit();
+	exit();*/
 }
 else{
 	$sql="SELECT * FROM $pid WHERE id=$vid";

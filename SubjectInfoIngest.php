@@ -32,9 +32,20 @@ $sql = "CREATE TABLE IF NOT EXISTS participants(
 	age VARCHAR(4) NOT NULL,
 	gender VARCHAR(30) NOT NULL,
 	spokenLang VARCHAR(30) NOT NULL,
-	sid VARCHAR(10),
 	PRIMARY KEY (pid)
 ) AUTO_INCREMENT=1000";
+if(mysqli_query($link, $sql)){
+    echo "Table created successfully. <br>";
+} else{
+    echo "ERROR: Could not execute $sql. " . mysqli_error($link);
+}
+
+$sql = "CREATE TABLE IF NOT EXISTS students(
+	sid VARCHAR(10) NOT NULL,
+	cid VARCHAR(20) NOT NULL,
+	name VARCHAR(50) NOT NULL,
+	PRIMARY KEY (sid)
+)";
 if(mysqli_query($link, $sql)){
     echo "Table created successfully. <br>";
 } else{
@@ -54,6 +65,8 @@ $age = mysqli_real_escape_string($link, $_REQUEST['age']);
 $gender = mysqli_real_escape_string($link, $_REQUEST['gender']);
 $first_language = mysqli_real_escape_string($link, $_REQUEST['first_language']);
 $sid = mysqli_real_escape_string($link, $_REQUEST['StudentID']);
+$cid = mysqli_real_escape_string($link, $_REQUEST['CourseID']);
+$name = mysqli_real_escape_string($link, $_REQUEST['full_name']);
  
 // Attempt insert query execution
 $sql = "INSERT INTO participants (age, gender, spokenLang, sid) VALUES ('$age', '$gender', '$first_language', '$sid')";
@@ -98,14 +111,27 @@ if(mysqli_query($link, $sql)){
 } else{
     echo "ERROR: Could not execute $sql. " . mysqli_error($link);
 }
- 
+
+setcookie("pid",$pid,time()+3600,"/");
+
 // Close connection
 mysqli_close($link);
 
+if($sid!=NULL){
+	setcookie("sid",$sid,time()+7200,"/");
+	setcookie("cid",$cid,time()+7200,"/");
+	setcookie("name",$name,time()+7200,"/");
+} else{
+	setcookie("sid","NaN",time()+7200,"/");
+}
+
+$sid=$_COOKIE["sid"];
+
+echo $sid;
 //**************************************************************
 //Generate the list of videos to present to the participant
 //**************************************************************
-
+/*
 $typeMap=array(
 	0=>"base",
 	1=>"B060",
@@ -124,7 +150,7 @@ $types=array();
 
 
 for($x=1;$x<=6;$x++){
-	$numbers=range(1,28);
+	$numbers=range(1,27);
 	shuffle($numbers);
 	//echo gettype($numbers[4]) . "<br>";
 	for($y=0;$y<=7;$y++){
@@ -135,9 +161,6 @@ for($x=1;$x<=6;$x++){
 		$counter++;
 	}
 }
-echo "Done";
-
-
 
 $link=mysqli_connect("localhost","root","","ChrisMcGurkExperiment");
 
@@ -160,8 +183,6 @@ for($x=0;$x<48;$x++){
 	}
 }
 
-#mysqli_close($link);
-
 $sql="SELECT * FROM $pid WHERE id=1";
 
 if($result=mysqli_query($link,$sql)){
@@ -175,5 +196,10 @@ if($result=mysqli_query($link,$sql)){
 mysqli_close($link);
 
 header("Location: https://localhost/McGurkExperiment/VideoDisplayPage.html?" . $pid . "|1|subclips/speaker" . $speaker . "/clip" . $phrase . "/" . $type . ".mp4");
+*/
+
+
+header("Location: https://localhost/McGurkExperiment/LearningVideoDisplayPage.html");
 exit();
+
 ?>
