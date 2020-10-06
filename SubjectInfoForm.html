@@ -8,25 +8,31 @@
 
 <body style="background: black; color: white">
     <div style="padding-top: 70px" align="center">
-        <form action="http://localhost/McGurkExperiment/SubjectInfoIngest.php" method="post">
+        <form name="infoForm" action="https://tatalab.ca/McGurkExperiment/SubjectInfoIngest.php" onsubmit="return validateForm()" method="post" required>
             <p style="font-size: 25px"><b><u>
                 Please fill out this form and click submit
             </u></b></p>
             <p>
-                <label>Is english your first language?&nbsp;&nbsp;<br></label>
+                <label>What is your first language?&nbsp;&nbsp;<br></label>
                 <input type="radio" name="first_language" id="english" value="1" checked>
-                <label for="english">Yes<br></label>
+                <label for="english">English<br></label>
                 <input type="radio" name="first_language" id="notEnglish" value="2">
-                <label for="notEnglish">No</label>
+		<label for="notEnglish">Other</label>
             </p>
             <p>
                 <label for="age">Age:</label>
                 <input type="number" name="age" id="age" value="18" autofocus>
             </p>
             <p>
-                <label for="gender">Gender:</label>
+                <label for="gender">Biological Sex:</label>
                 <input type="text" name="gender" id="gender">
             </p>
+	    <p>
+	    	<label>Do you have any hearing problems you are aware of?&nbsp;&nbsp;<br></label>
+		<input type="radio" name="hearing" id="badhearing" value="2">
+		<label for="badhearing">Yes<br></label>
+		<input type="radio" name="hearing" id="goodhearing" value="1" checked>
+		<label for="goodhearing">No<br></label>
             <p style="font-size: 20px"><b><u>
                 If you are completing this for course credit please fill out the following fields.<br>Otherwise click "Submit"
             </u></b></p>
@@ -46,6 +52,13 @@
         </form>
     </div>
     <script>
+	function validateForm(){
+		var x=document.forms["infoForm"]["gender"].value;
+		if(x==""||x==undefined){
+			alert("You must fill out all the top fields");
+			return false;
+		}
+	}
         function createCookie(name, value, minutes){
             var expires;
             if(minutes){
@@ -58,7 +71,7 @@
             }
             document.cookie=escape(name)+"="+escape(value)+expires+"; path=/";
         }
-        document.getElementById("submit").addEventListener("click",buildCookies);
+//        document.getElementById("submit").addEventListener("click",buildCookies);
 
     </script>
 </body>

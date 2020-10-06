@@ -2,7 +2,9 @@
 //**************************************************************
 //If the DB doesn't exist, make it
 //**************************************************************
-$link = mysqli_connect("localhost", "root", "");
+$uname="experiment";
+$pword="Password123!";
+$link = mysqli_connect("localhost", $uname, $pword);
 
 if($link === false){
     die("ERROR: Could not connect to localhost. " . mysqli_connect_error());
@@ -21,7 +23,7 @@ mysqli_close($link);
 //**************************************************************
 //If the table doesn't exist already, make it
 //**************************************************************
-$link=mysqli_connect("localhost","root","","ChrisMcGurkExperiment");
+$link=mysqli_connect("localhost",$uname,$pword,"ChrisMcGurkExperiment");
 
 if($link===false){
 	die("ERROR: Could not connect to Database. " . mysqli_connect_error());
@@ -30,8 +32,9 @@ if($link===false){
 $sql = "CREATE TABLE IF NOT EXISTS participants(
 	pid INT UNSIGNED AUTO_INCREMENT,
 	age VARCHAR(4) NOT NULL,
-	gender VARCHAR(30) NOT NULL,
-	spokenLang VARCHAR(30) NOT NULL,
+	sex VARCHAR(30) NOT NULL,
+	spokenLang VARCHAR(1) NOT NULL,
+	hearing VARCHAR(1) NOT NULL,
 	PRIMARY KEY (pid)
 ) AUTO_INCREMENT=1000";
 if(mysqli_query($link, $sql)){
@@ -58,18 +61,19 @@ mysqli_close($link);
 //**************************************************************
 //Insert the new participant's record
 //**************************************************************
-$link=mysqli_connect("localhost","root","","ChrisMcGurkExperiment");
+$link=mysqli_connect("localhost",$uname,$pword,"ChrisMcGurkExperiment");
 
 // Escape user inputs for security
 $age = mysqli_real_escape_string($link, $_REQUEST['age']);
 $gender = mysqli_real_escape_string($link, $_REQUEST['gender']);
 $first_language = mysqli_real_escape_string($link, $_REQUEST['first_language']);
+$hearing = mysqli_real_escape_string($link, $_REQUEST['hearing']);
 $sid = mysqli_real_escape_string($link, $_REQUEST['StudentID']);
 $cid = mysqli_real_escape_string($link, $_REQUEST['CourseID']);
 $name = mysqli_real_escape_string($link, $_REQUEST['full_name']);
  
 // Attempt insert query execution
-$sql = "INSERT INTO participants (age, gender, spokenLang, sid) VALUES ('$age', '$gender', '$first_language', '$sid')";
+$sql = "INSERT INTO participants (age, sex, spokenLang, hearing) VALUES ('$age', '$gender', '$first_language', '$hearing')";
 
 //if the insertion was successful, grab the PID for later use
 if(mysqli_query($link, $sql)){
@@ -87,7 +91,7 @@ mysqli_close($link);
 //**************************************************************
 
 //Connect to the DB
-$link=mysqli_connect("localhost","root","","ChrisMcGurkExperiment");
+$link=mysqli_connect("localhost",$uname,$pword,"ChrisMcGurkExperiment");
 
 if($link===false){
 	die("ERROR: Could not connect to Database. " . mysqli_connect_error());
@@ -199,7 +203,7 @@ header("Location: https://localhost/McGurkExperiment/VideoDisplayPage.html?" . $
 */
 
 
-header("Location: https://localhost/McGurkExperiment/LearningVideoDisplayPage.html");
+header("Location: https://tatalab.ca/McGurkExperiment/LearningVideoDisplayPage.html");
 exit();
 
 ?>

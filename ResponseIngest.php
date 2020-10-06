@@ -1,6 +1,7 @@
 <?php
-
-$link=mysqli_connect("localhost","root","","ChrisMcGurkExperiment");
+$uname="experiment";
+$pword="Password123!";
+$link=mysqli_connect("localhost",$uname,$pword,"ChrisMcGurkExperiment");
 
 $response = mysqli_real_escape_string($link, $_REQUEST['response']);
 $pid=$_COOKIE["pid"];
@@ -19,7 +20,7 @@ if(mysqli_query($link,$sql)){
 
 $vid=$vid+1;
 
-if($vid>1){
+if($vid>48){
 	echo $sid."<br>";
 	if($sid!="NaN"){
 		$cid=$_COOKIE["cid"];
@@ -31,9 +32,9 @@ if($vid>1){
 	   		echo "ERROR: Could not execute $sql. " . mysqli_error($link);
 		}
 	}
-	/*
+
 	header("Location: FinalPage.html");
-	exit();*/
+	exit();
 }
 else{
 	$sql="SELECT * FROM $pid WHERE id=$vid";
@@ -50,7 +51,7 @@ else{
 
 	mysqli_close($link);
 	
-	header("Location: https://localhost/McGurkExperiment/VideoDisplayPage.html?" . $pid . "|" . $vid . "|subclips/speaker" . $speaker . "/clip" . $phrase . "/" . $type . ".mp4");
+	header("Location: https://tatalab.ca/McGurkExperiment/VideoDisplayPage.html?" . $pid . "|" . $vid . "|subclips/speaker" . $speaker . "/clip" . $phrase . "/" . $type . ".mp4");
 	exit();
 }
 ?>

@@ -2,6 +2,8 @@
 //**************************************************************
 //Generate the list of videos to present to the participant
 //**************************************************************
+$uname="experiment";
+$pword="Password123!";
 $pid=$_COOKIE["pid"];
 $typeMap=array(
 	0=>"base",
@@ -33,7 +35,7 @@ for($x=1;$x<=6;$x++){
 	}
 }
 
-$link=mysqli_connect("localhost","root","","ChrisMcGurkExperiment");
+$link=mysqli_connect("localhost",$uname,$pword,"ChrisMcGurkExperiment");
 
 if($link===false){
 	die("ERROR: Could not connect to Database. " . mysqli_connect_error());
@@ -66,6 +68,6 @@ if($result=mysqli_query($link,$sql)){
 
 mysqli_close($link);
 
-header("Location: https://localhost/McGurkExperiment/VideoDisplayPage.html?" . $pid . "|1|subclips/speaker" . $speaker . "/clip" . $phrase . "/" . $type . ".mp4");
+header("Location: https://tatalab.ca/McGurkExperiment/VideoDisplayPage.html?" . $pid . "|1|subclips/speaker" . $speaker . "/clip" . $phrase . "/" . $type . ".mp4");
 exit();
 ?>

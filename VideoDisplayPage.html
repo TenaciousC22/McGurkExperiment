@@ -14,7 +14,7 @@
 
 <body style="background: black; color: white">
 	<div align="center">
-		<button onclick="play()" type="button" id="playButton">Play Video</button>
+		<button onclick="play()" type="button" id="playButton" disabled="true">Play Video</button>
 		<button onclick="redirect()" type="button" id="continuebutton" disabled="true">Continue</button>
 	</div>
 	<div align="center">
@@ -36,6 +36,7 @@
 			source.setAttribute("src",inputs[2]);
 			video.appendChild(source);
 			video.load();
+			setTimeout(function(){document.getElementById("playButton").disabled=false;},5000);
 			function play(){
 				audio.play();
 				video.play();
@@ -47,24 +48,6 @@
 			}
 			function videoEnd(){
 				audio.pause();
-			}
-			function pause() {
-				video.pause();
-			}
-			function loadMovie(){
-				video.pause();
-				source.setAttribute('src',"../bin/B360.mp4");
-				video.load();
-			}
-			function loadMovie1(){
-				video.pause();
-				source.setAttribute('src',"../bin/base.mp4");
-				video.load();
-			}
-			function loadMovie2(){
-				video.pause();
-				source.setAttribute('src',"../bin/I360.mp4");
-				video.load();
 			}
 		</script>
 	</div>

@@ -14,8 +14,8 @@
 
 <body style="background: black; color: white">
 	<div align="center">
-		<p>TRAINING</p>
-		<button onclick="play()" type="button" id="playButton">Play Video</button>
+		<p>PRACTICE</p>
+		<button onclick="play()" type="button" id="playButton" disabled="true">Play Video</button>
 		<button onclick="redirect()" type="button" id="continuebutton" disabled="true">Continue</button>
 	</div>
 	<div align="center">
@@ -35,6 +35,7 @@
 			source.setAttribute("src",vid);
 			video.appendChild(source);
 			video.load();
+			setTimeout(function(){document.getElementById("playButton").disabled=false;},5000);
 			function play(){
 				audio.play();
 				video.play();
