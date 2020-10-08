@@ -13,46 +13,65 @@
 </head>
 
 <body style="background: black; color: white">
-	<div align="center">
+	<div align="center" style="padding-top: 40px">
 		<p>PRACTICE</p>
 		<button onclick="play()" type="button" id="playButton" disabled="true">Play Video</button>
-		<button onclick="redirect()" type="button" id="continuebutton" disabled="true">Continue</button>
+		<!--<button onclick="redirect()" type="button" id="continuebutton" disabled="true">Continue</button>-->
 	</div>
-	<div align="center">
+	<div align="center"style="padding-top: 10px">
 		<video width="1120" height="630" id="video">
 		</video>
 		<audio id="audio">
 			<source src="bin/babble.mp3" type="audio/mpeg">
 		</audio>
-		<script>
-			var vidNum=getRandomInt(6);
-			var vid="".concat("subclips/speaker",vidNum.toString(),"/clip28/base.mp4");
-			var link="LearningResponseRecording.html";
-			var video=document.getElementById("video");
-			document.getElementById("video").addEventListener('ended',videoEnd,false);
-			var source=document.createElement("source");
-			var audio=document.getElementById("audio");
-			source.setAttribute("src",vid);
-			video.appendChild(source);
-			video.load();
-			setTimeout(function(){document.getElementById("playButton").disabled=false;},5000);
-			function play(){
-				audio.play();
-				video.play();
-				document.getElementById("playButton").disabled=true;
-				document.getElementById("continuebutton").disabled=false;
-			}
-			function redirect(){
-				window.location.replace(link);
-			}
-			function videoEnd(){
-				audio.pause();
-			}
-			function getRandomInt(max) {
-  				return (Math.floor(Math.random() * Math.floor(max))+1);
-			}
-		</script>
+		
 	</div>
-
+	<div align="center" style="padding-top: 25px">
+		<form id="infoForm" action="https://tatalab.ca/MSSP/TrialPrep.php" onsubmit="return validateForm()" method="post" required>
+			<p>
+				Please enter what the speaker said below:
+			</p>
+        	<p>
+	            <label for="response"></label>
+	            <input type="text" name="response" id="response" size="50" disabled="true">
+	        </p>
+	        <input id="submit" type="submit" value="Submit" disabled="true">
+	    </form>
+	</div>
 </body>
+<script>
+	var vidNum=getRandomInt(6);
+	var vid="".concat("subclips/speaker",vidNum.toString(),"/clip28/base.mp4");
+	var link="LearningResponseRecording.html";
+	var video=document.getElementById("video");
+	document.getElementById("video").addEventListener('ended',videoEnd,false);
+	var source=document.createElement("source");
+	var audio=document.getElementById("audio");
+	source.setAttribute("src",vid);
+	video.appendChild(source);
+	video.load();
+	setTimeout(function(){document.getElementById("playButton").disabled=false;},5000);
+	function play(){
+		audio.play();
+		video.play();
+		document.getElementById("playButton").disabled=true;
+		document.getElementById("continuebutton").disabled=false;
+	}
+	function validateForm(){
+		var x=document.forms['infoForm']['response'].value;
+		if(x==""||x==undefined){
+			alert("Please enter a response, If you don't know what was said type 'I don't know'");
+			return false;
+		}
+	}
+	function videoEnd(){
+		audio.pause();
+		document.getElementById("response").disabled=false;
+		document.getElementById("response").placeholder="Enter Response Now";
+		document.getElementById("submit").disabled=false;
+	}
+	function getRandomInt(max) {
+			return (Math.floor(Math.random() * Math.floor(max))+1);
+	}
+</script>
 </html>

@@ -51,7 +51,7 @@ else{
 
 	mysqli_close($link);
 	
-	header("Location: https://tatalab.ca/McGurkExperiment/VideoDisplayPage.html?" . $pid . "|" . $vid . "|subclips/speaker" . $speaker . "/clip" . $phrase . "/" . $type . ".mp4");
+	header("Location: https://tatalab.ca/MSSP/VideoDisplayPage.html?" . $pid . "|" . $vid . "|subclips/speaker" . $speaker . "/clip" . $phrase . "/" . $type . ".mp4");
 	exit();
 }
 ?>

@@ -13,19 +13,19 @@
 </head>
 
 <body style="background: black; color: white">
-	<div align="center">
+	<div align="center" style="padding-top: 40px">
 		<button onclick="play()" type="button" id="playButton" disabled="true">Play Video</button>
-		<button onclick="redirect()" type="button" id="continuebutton" disabled="true">Continue</button>
+		<!--<button onclick="redirect()" type="button" id="continuebutton" disabled="true">Continue</button>-->
 	</div>
-	<div align="center">
+	<div align="center" style="padding-top: 10px">
 		<video width="1120" height="630" id="video">
 		</video>
 		<audio id="audio">
 			<source src="bin/babble.mp3" type="audio/mpeg">
 		</audio>
 	</div>
-	<div align="center" style="padding-top: 70px">
-		<form id="infoForm" action="https://tatalab.ca/McGurkExperiment/ResponseIngest.php" onsubmit="return validateForm()" method="post" required>
+	<div align="center" style="padding-top: 25px">
+		<form id="infoForm" action="https://tatalab.ca/MSSP/ResponseIngest.php" onsubmit="return validateForm()" method="post" required>
 			<p>
 				Please enter what the speaker said below:
 			</p>
@@ -57,13 +57,32 @@
 		document.getElementById("playButton").disabled=true;
 		//document.getElementById("continuebutton").disabled=false;
 	}
-	function redirect(){
-		window.location.replace(link.concat("?",pid,"|",vid));
-	}
 	function videoEnd(){
 		audio.pause();
-		document.getElementById("response").disabled="false";
-		document.getElementById("submit").disabled="false";
+		document.getElementById("response").disabled=false;
+		document.getElementById("response").placeholder="Enter Response Now";
+		document.getElementById("submit").disabled=false;
 	}
+	function validateForm(){
+		var x=document.forms['infoForm']['response'].value;
+		if(x==""||x==undefined){
+			alert("Please enter a response, If you don't know what was said type 'I don't know'");
+			return false;
+		}
+	}
+	function createCookie(name, value, minutes){
+		var expires;
+		if(minutes){
+			var date=new Date();
+			date.setTime(date.getTime()+(minutes*60*1000));
+			expires="; expires="+date.toGMTString();
+		}
+		else{
+			expires="";
+		}
+		document.cookie=escape(name)+"="+escape(value)+expires+"; path=/";
+	}
+	createCookie("pid",pid,20);
+	createCookie("vid",vid,20);
 </script>
 </html>
