@@ -22,7 +22,7 @@
 		<video width="1120" height="630" id="video">
 		</video>
 		<audio id="audio">
-			<source src="bin/babble.mp3" type="audio/mpeg">
+			<source type="audio/wav">
 		</audio>
 		
 	</div>
@@ -47,6 +47,7 @@
 	document.getElementById("video").addEventListener('ended',videoEnd,false);
 	var source=document.createElement("source");
 	var audio=document.getElementById("audio");
+	audio.setAttribute("src","".concat("subclips/speaker",vidNum.toString(),"/clip28/noise.wav"))
 	source.setAttribute("src",vid);
 	video.appendChild(source);
 	video.load();

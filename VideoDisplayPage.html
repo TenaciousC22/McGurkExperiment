@@ -42,12 +42,21 @@
 	var inputs=QS.split("|");
 	var pid=inputs[0];
 	var vid=inputs[1];
+	var temp=inputs[2];
 	var link="ResponseRecording.html";
-	var video=document.getElementById("video")
+	if(temp.charAt(temp.length-6)=="l"){
+		var basePath=temp.substring(0,temp.length-10);
+	}
+	else{
+		var basePath=temp.substring(0,temp.length-8);
+	}
+	var noisePath="".concat(basePath,"noise.wav");
+	var video=document.getElementById("video");
 	document.getElementById("video").addEventListener('ended',videoEnd,false);
 	var source=document.createElement("source");
 	var audio=document.getElementById("audio");
 	source.setAttribute("src",inputs[2]);
+	audio.setAttribute("src",noisePath);
 	video.appendChild(source);
 	video.load();
 	setTimeout(function(){document.getElementById("playButton").disabled=false;},5000);
