@@ -13,14 +13,17 @@
 </head>
 
 <body style="background: black; color: white">
-	<div align="center" style="padding-top: 40px">
+	<div align="center">
+		Video: <span id="vid"></span>/48
+	</div>
+	<div align="center" style="padding-top: 20px">
 		<button onclick="play()" type="button" id="playButton" disabled="true">Play Video</button>
 		<!--<button onclick="redirect()" type="button" id="continuebutton" disabled="true">Continue</button>-->
 	</div>
 	<div align="center" style="padding-top: 10px">
-		<video width="1120" height="630" id="video">
+		<video width="960" height="540" preload="auto" id="video">
 		</video>
-		<audio id="audio">
+		<audio id="audio" preload="auto">
 			<source src="bin/babble.mp3" type="audio/mpeg">
 		</audio>
 	</div>
@@ -31,7 +34,7 @@
 			</p>
         	<p>
 	            <label for="response"></label>
-	            <input type="text" name="response" id="response" size="50" disabled="true">
+	            <input type="text" name="response" id="response" size="50" disabled="true" autocomplete="off">
 	        </p>
 	        <input id="submit" type="submit" value="Submit" disabled="true">
 	    </form>
@@ -44,6 +47,7 @@
 	var vid=inputs[1];
 	var temp=inputs[2];
 	var link="ResponseRecording.html";
+	document.getElementById("vid").innerHTML=vid;
 	if(temp.charAt(temp.length-6)=="l"){
 		var basePath=temp.substring(0,temp.length-10);
 	}
@@ -71,6 +75,7 @@
 		document.getElementById("response").disabled=false;
 		document.getElementById("response").placeholder="Enter Response Now";
 		document.getElementById("submit").disabled=false;
+		document.getElementById("submit").scrollIntoView();
 	}
 	function validateForm(){
 		var x=document.forms['infoForm']['response'].value;

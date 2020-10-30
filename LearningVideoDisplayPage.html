@@ -13,13 +13,13 @@
 </head>
 
 <body style="background: black; color: white">
-	<div align="center" style="padding-top: 40px">
+	<div align="center" style="padding-top: 20px">
 		<p>PRACTICE</p>
 		<button onclick="play()" type="button" id="playButton" disabled="true">Play Video</button>
 		<!--<button onclick="redirect()" type="button" id="continuebutton" disabled="true">Continue</button>-->
 	</div>
 	<div align="center"style="padding-top: 10px">
-		<video width="1120" height="630" id="video">
+		<video width="960" height="540" id="video">
 		</video>
 		<audio id="audio">
 			<source type="audio/wav">
@@ -33,7 +33,7 @@
 			</p>
         	<p>
 	            <label for="response"></label>
-	            <input type="text" name="response" id="response" size="50" disabled="true">
+	            <input type="text" name="response" id="response" size="50" disabled="true" autocomplete="off">
 	        </p>
 	        <input id="submit" type="submit" value="Submit" disabled="true">
 	    </form>
@@ -70,6 +70,8 @@
 		document.getElementById("response").disabled=false;
 		document.getElementById("response").placeholder="Enter Response Now";
 		document.getElementById("submit").disabled=false;
+		document.getElementById("playButton").disabled=true;
+		document.getElementById("submit").scrollIntoView();
 	}
 	function getRandomInt(max) {
 			return (Math.floor(Math.random() * Math.floor(max))+1);
