@@ -3,7 +3,7 @@ $uname="experiment";
 $pword="Password123!";
 $link=mysqli_connect("localhost",$uname,$pword,"ChrisMcGurkExperiment");
 
-$sql="SELECT COUNT(*) FROM participants";
+$sql="SELECT * FROM participants";
 
 $result=mysqli_query($link,$sql);
 
