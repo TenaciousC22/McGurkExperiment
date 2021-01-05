@@ -21,6 +21,7 @@ if(mysqli_query($link,$sql)){
 $vid=$vid+1;
 
 if($vid>48){
+	/*
 	echo $sid."<br>";
 	if($sid!="NaN"){
 		$cid=$_COOKIE["cid"];
@@ -32,7 +33,7 @@ if($vid>48){
 	   		echo "ERROR: Could not execute $sql. " . mysqli_error($link);
 		}
 	}
-
+	*/
 	header("Location: FinalPage.html");
 	exit();
 }

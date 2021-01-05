@@ -88,6 +88,17 @@ if(mysqli_query($link, $sql)){
     echo "ERROR: Could not execute $sql. " . mysqli_error($link);
 }
 // Close connection
+
+if($sid!="NaN"){
+	$cid=$_COOKIE["cid"];
+	$name=$_COOKIE["name"];
+	$sql = "INSERT INTO students (sid, cid, name) VALUES ('$sid', '$cid', '$name')";
+	if(mysqli_query($link, $sql)){
+    	echo "Records added successfully. <br>";
+	} else{
+   		echo "ERROR: Could not execute $sql. " . mysqli_error($link);
+	}
+}
 mysqli_close($link);
 
 //**************************************************************
