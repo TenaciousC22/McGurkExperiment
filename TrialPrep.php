@@ -5,6 +5,8 @@
 $uname="experiment";
 $pword="Password123!";
 $pid=$_COOKIE["pid"];
+//Needs modification
+//*****************************************************
 $typeMap=array(
 	0=>"base",
 	1=>"B060",
@@ -15,6 +17,7 @@ $typeMap=array(
 	6=>"I360",
 	7=>"jumble"
 );
+//*****************************************************
 
 $counter=0;
 $speakers=array();
