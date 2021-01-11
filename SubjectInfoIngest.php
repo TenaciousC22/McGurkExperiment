@@ -49,6 +49,7 @@ $sql = "CREATE TABLE IF NOT EXISTS students(
 	sid VARCHAR(10) NOT NULL,
 	cid VARCHAR(20) NOT NULL,
 	name VARCHAR(50) NOT NULL,
+	finished BOOLEAN,
 	PRIMARY KEY (sid)
 )";
 if(mysqli_query($link, $sql)){
@@ -89,10 +90,11 @@ if(mysqli_query($link, $sql)){
 }
 // Close connection
 
+$temp=false;
 if($sid!="NaN"){
 	$cid=$_COOKIE["cid"];
 	$name=$_COOKIE["name"];
-	$sql = "INSERT INTO students (sid, cid, name) VALUES ('$sid', '$cid', '$name')";
+	$sql = "INSERT INTO students (sid, cid, name, finished) VALUES ('$sid', '$cid', '$name', '$temp')";
 	if(mysqli_query($link, $sql)){
     	echo "Records added successfully. <br>";
 	} else{
@@ -136,6 +138,7 @@ setcookie("pid",$pid,time()+3600,"/");
 // Close connection
 mysqli_close($link);
 
+//Needed for determining if the partcipant finished the experiment
 if($sid!=NULL){
 	setcookie("sid",$sid,time()+7200,"/");
 	setcookie("cid",$cid,time()+7200,"/");

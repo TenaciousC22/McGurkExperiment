@@ -20,20 +20,19 @@ if(mysqli_query($link,$sql)){
 
 $vid=$vid+1;
 
-if($vid>48){
-	/*
+if($vid>2){
 	echo $sid."<br>";
 	if($sid!="NaN"){
+		$temp=true;
 		$cid=$_COOKIE["cid"];
 		$name=$_COOKIE["name"];
-		$sql = "INSERT INTO students (sid, cid, name) VALUES ('$sid', '$cid', '$name')";
+		$sql = "UPDATE students SET finished='$temp' WHERE sid='$sid'";
 		if(mysqli_query($link, $sql)){
-	    	echo "Records added successfully. <br>";
+	    	echo "Records updated successfully. <br>";
 		} else{
 	   		echo "ERROR: Could not execute $sql. " . mysqli_error($link);
 		}
 	}
-	*/
 	header("Location: FinalPage.html");
 	exit();
 }

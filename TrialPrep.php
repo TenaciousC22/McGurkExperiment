@@ -7,13 +7,13 @@ $pword="Password123!";
 $pid=$_COOKIE["pid"];
 //Needs modification
 //*****************************************************
-$typeMap=array(
+$typeMap=array(	
 	0=>"base",
-	1=>"B060",
-	2=>"B240",
-	3=>"B360",
-	4=>"I060",
-	5=>"I240",
+	1=>"B240",
+	2=>"B360",
+	3=>"B480",
+	4=>"B600",
+	5=>"B720",
 	6=>"I360",
 	7=>"jumble"
 );
@@ -23,7 +23,6 @@ $counter=0;
 $speakers=array();
 $phrases=array();
 $types=array();
-
 
 for($x=1;$x<=6;$x++){
 	$numbers=range(1,27);
