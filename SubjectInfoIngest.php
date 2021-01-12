@@ -4,62 +4,6 @@
 //**************************************************************
 $uname="experiment";
 $pword="Password123!";
-$link = mysqli_connect("localhost", $uname, $pword);
-
-if($link === false){
-    die("ERROR: Could not connect to localhost. " . mysqli_connect_error());
-}
-
-$sql = "CREATE DATABASE IF NOT EXISTS ChrisMcGurkExperiment";
-if(mysqli_query($link, $sql)){
-    echo "Database created successfully <br>";
-} else{
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-}
-
-// Close Connection
-mysqli_close($link);
-
-//**************************************************************
-//If the table doesn't exist already, make it
-//**************************************************************
-$link=mysqli_connect("localhost",$uname,$pword,"ChrisMcGurkExperiment");
-
-if($link===false){
-	die("ERROR: Could not connect to Database. " . mysqli_connect_error());
-}
-
-$sql = "CREATE TABLE IF NOT EXISTS participants(
-	pid INT UNSIGNED AUTO_INCREMENT,
-	age VARCHAR(4) NOT NULL,
-	sex VARCHAR(30) NOT NULL,
-	spokenLang VARCHAR(1) NOT NULL,
-	hearing VARCHAR(1) NOT NULL,
-	handedness VARCHAR(1) NOT NULL,
-	audio VARCHAR(1) NOT NULL,
-	PRIMARY KEY (pid)
-) AUTO_INCREMENT=1000";
-if(mysqli_query($link, $sql)){
-    echo "Table created successfully. <br>";
-} else{
-    echo "ERROR: Could not execute $sql. " . mysqli_error($link);
-}
-
-$sql = "CREATE TABLE IF NOT EXISTS students(
-	sid VARCHAR(10) NOT NULL,
-	cid VARCHAR(20) NOT NULL,
-	name VARCHAR(50) NOT NULL,
-	finished BOOLEAN,
-	PRIMARY KEY (sid)
-)";
-if(mysqli_query($link, $sql)){
-    echo "Table created successfully. <br>";
-} else{
-    echo "ERROR: Could not execute $sql. " . mysqli_error($link);
-}
- 
-// Close connection
-mysqli_close($link);
 
 //**************************************************************
 //Insert the new participant's record
@@ -88,31 +32,20 @@ if(mysqli_query($link, $sql)){
 } else{
     echo "ERROR: Could not execute $sql. " . mysqli_error($link);
 }
-// Close connection
 
-$temp=false;
+$finished=0;
 if($sid!="NaN"){
-	$cid=$_COOKIE["cid"];
-	$name=$_COOKIE["name"];
-	$sql = "INSERT INTO students (sid, cid, name, finished) VALUES ('$sid', '$cid', '$name', '$temp')";
+	$sql = "INSERT INTO students (sid, cid, name, finished) VALUES ('$sid', '$cid', '$name', '$finished')";
 	if(mysqli_query($link, $sql)){
     	echo "Records added successfully. <br>";
 	} else{
    		echo "ERROR: Could not execute $sql. " . mysqli_error($link);
 	}
 }
-mysqli_close($link);
 
 //**************************************************************
 //Create the table that will be assigned to the participant
 //**************************************************************
-
-//Connect to the DB
-$link=mysqli_connect("localhost",$uname,$pword,"ChrisMcGurkExperiment");
-
-if($link===false){
-	die("ERROR: Could not connect to Database. " . mysqli_connect_error());
-}
 
 //Append P to the PID so that it's a valid table name
 $pid="p" . $pid;

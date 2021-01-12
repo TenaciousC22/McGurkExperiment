@@ -20,7 +20,7 @@ if(mysqli_query($link,$sql)){
 
 $vid=$vid+1;
 
-if($vid>2){
+if($vid>48){
 	echo $sid."<br>";
 	if($sid!="NaN"){
 		$temp=true;
