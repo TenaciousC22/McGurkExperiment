@@ -14,7 +14,7 @@ def power(arr):
 	return power
 
 for x in range(6):
-	for y in range(28):
+	for y in range(27,28):
 		baseNoise=AudioFileClip("bin/babble.wav")
 		baseVideo=VideoFileClip("subclips/speaker"+str(x+1)+"/clip"+str(y+1)+"/base.mp4")
 		baseSignal=baseVideo.audio
@@ -41,14 +41,14 @@ for x in range(6):
 		print(SNRdb)
 		print("")
 
-		while SNRdb<=-7.1 or SNRdb>=-6.9:
-			if SNRdb<-7.1:
-				if abs(SNRdb-(-7.1))>1:
+		while SNRdb<=-10.1 or SNRdb>=-9.9:
+			if SNRdb<-10.1:
+				if abs(SNRdb-(-10.1))>1:
 					baseNoise=baseNoise.volumex(0.85)
 				else:
 					baseNoise=baseNoise.volumex(0.95)
-			if SNRdb>-6.9:
-				if abs(SNRdb-(-6.9))>1:
+			if SNRdb>-9.9:
+				if abs(SNRdb-(-9.9))>1:
 					baseNoise=baseNoise.volumex(1.2)
 				else:
 					baseNoise=baseNoise.volumex(1.02)
