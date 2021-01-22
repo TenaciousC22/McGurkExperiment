@@ -25,7 +25,7 @@ $phrases=array();
 $types=array();
 
 for($x=1;$x<=6;$x++){
-	$numbers=range(1,27);
+	$numbers=range(1,28);
 	shuffle($numbers);
 	//echo gettype($numbers[4]) . "<br>";
 	for($y=0;$y<=7;$y++){
