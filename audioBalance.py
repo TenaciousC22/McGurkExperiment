@@ -41,14 +41,14 @@ for x in range(6):
 		print(SNRdb)
 		print("")
 
-		while SNRdb<=-10.1 or SNRdb>=-9.9:
-			if SNRdb<-10.1:
-				if abs(SNRdb-(-10.1))>1:
+		while SNRdb<=-3.1 or SNRdb>=-2.9:
+			if SNRdb<-3.1:
+				if abs(SNRdb-(-3.1))>1:
 					baseNoise=baseNoise.volumex(0.85)
 				else:
 					baseNoise=baseNoise.volumex(0.95)
-			if SNRdb>-9.9:
-				if abs(SNRdb-(-9.9))>1:
+			if SNRdb>-2.9:
+				if abs(SNRdb-(-2.9))>1:
 					baseNoise=baseNoise.volumex(1.2)
 				else:
 					baseNoise=baseNoise.volumex(1.02)
